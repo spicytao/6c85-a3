@@ -1,168 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment 3: Visualization Critique & Redesign</title>
-    <style>
-        body {
-            font-family: 'Georgia', serif; /* Classic academic serif font */
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-            margin: 0;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        h2 {
-            font-size: 20px;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
-        }
-        h3 {
-            font-size: 18px;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        .author-info {
-            font-size: 16px;
-            margin-bottom: 30px;
-        }
-        ul, ol {
-            margin-bottom: 25px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        .chart-container {
-            margin: 30px 0;
-            text-align: center;
-        }
-        .chart-container img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .analysis-block {
-            margin-bottom: 40px;
-        }
-        .analysis-block strong {
-            font-family: 'Helvetica Neue', Helvetica, sans-serif;
-            font-size: 15px;
-        }
-    </style>
-</head>
-<body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment 3: Visualization Critique & Redesign</title>
 
-<div class="container">
-    <h1>Assignment 3: Visualization Critique & Redesign</h1>
-    <div class="author-info">
-        Interactive Visualization and Society<br>
-    </div>
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #555;
+      --muted2:#6b7280;
+      --border:#e6e6e6;
+      --card:#f6f6f6;   /* caption gray */
+      --shadow: 0 6px 18px rgba(0,0,0,0.06);
+      --radius: 14px;
+      --max: 900px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      line-height:1.7;
+      padding:56px 18px;
+    }
+
+    .container{
+      max-width: var(--max);
+      margin:0 auto;
+    }
+
+    header{
+      margin-bottom:28px;
+    }
+
+    h1{
+      font-size: 30px;
+      line-height:1.15;
+      margin:0 0 10px;
+      letter-spacing:-0.2px;
+    }
+
+    .author{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .author a{
+      color: inherit;
+      text-decoration: none;
+      border-bottom:1px dotted var(--border);
+    }
+
+    .divider{
+      height:1px;
+      background:var(--border);
+      margin:18px 0 10px;
+    }
+
+    h2{
+      font-size: 20px;
+      margin: 34px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing:-0.1px;
+    }
+
+    h3{
+      font-size: 18px;
+      margin: 22px 0 10px;
+      color:#222;
+    }
+
+    p{
+      margin: 0 0 14px;
+      text-align: justify;
+    }
+
+    ul, ol{
+      margin: 10px 0 18px 22px;
+      padding:0;
+    }
+
+    li{
+      margin: 8px 0;
+    }
+
+    /* --- Figure block (image + gray caption like reference) --- */
+    figure{
+      margin: 18px 0 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    figure img{
+      width:100%;
+      display:block;
+      background:#fff;
+    }
+
+    figcaption{
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 12px 14px 14px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--muted2);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .cap-title{
+      font-weight: 700;
+      color:#374151;
+      margin-bottom:6px;
+      font-size: 13.5px;
+    }
+
+    .cap-meta{
+      margin-top:8px;
+      font-size: 12.5px;
+      color:#8a8f98;
+    }
+
+    .analysis-block{
+      margin: 0 0 30px;
+      padding: 14px 16px;
+      border-left: 3px solid #e5e7eb;
+      background: #fafafa;
+      border-radius: 10px;
+    }
+
+    .analysis-block strong{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    /* Small note pill (optional) */
+    .pill{
+      display:inline-block;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size:12px;
+      color:#374151;
+      background:#f3f4f6;
+      border:1px solid #e5e7eb;
+      padding:3px 10px;
+      border-radius:999px;
+      margin-right:8px;
+      margin-top:8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header>
+      <h1>Assignment 3: Visualization Critique & Redesign</h1>
+      <div class="author">
+        <div><strong>Shengtao Shen</strong> · <a href="mailto:sstheo@mit.edu">sstheo@mit.edu</a></div>
+        <div>Interactive Visualization and Society</div>
+        <div class="pill">A3</div><div class="pill">NYT Omicron Spiral</div>
+      </div>
+      <div class="divider"></div>
+    </header>
 
     <h2>Task 1 — Insights from the Original Visualization</h2>
-    <div class="chart-container">
-        <img src="img/1.png" alt="Original NYT Spiral Visualization">
-    </div>
+
+    <figure>
+      <img src="img/1.png" alt="Original NYT Spiral Visualization">
+      <figcaption>
+        <div class="cap-title">Figure 1 — Original NYT Spiral (7-day average daily cases)</div>
+        The spiral form creates a strong narrative of escalation, but it also introduces radial distortions and weak baselines that complicate precise comparisons.
+        <div class="cap-meta">Source: New York Times opinion visualization (referenced in assignment).</div>
+      </figcaption>
+    </figure>
+
     <ul>
-        <li><strong>Unprecedented scale of the Omicron surge (early 2022):</strong> The outermost segment does not merely widen; it expands explosively outward, visually signaling a structural break. Omicron pushes daily new cases far beyond any prior maximum in 2020–2021.</li>
-        <li><strong>Seasonal recurrence with winter dominance:</strong> The inner rings (2020 and 2021) suggest a recurring pattern where major peaks cluster around winter (near the top of the spiral), implying a seasonal tendency in transmission intensity.</li>
-        <li><strong>Secondary rebounds outside winter:</strong> Beyond the dominant winter peaks, the spiral shows notable bulges in late summer/early fall, indicating that meaningful surges also occur outside the winter season rather than being confined to one annual window.</li>
-        <li><strong>Cyclical patterns vs. variant-driven unpredictability:</strong> While the spiral hints at seasonality and repetition, the abrupt magnitude jump in 2022 demonstrates that new variants can overwhelm historical patterns—past cycles do not reliably predict future surge scale.</li>
-        <li><strong>Expanding infection baseline over time:</strong> From the center outward, the overall band becomes thicker, suggesting that even between peaks, the “floor” of daily new cases rises across the two-year period. Later lows remain higher than earlier lows.</li>
-        <li><strong>Wave stacking / limited reset between surges:</strong> After major peaks, the curve does not fully contract back toward earlier low levels; instead, subsequent waves build on an already elevated baseline, creating a ratcheting effect over time.</li>
-        <li><strong>Rapid escalation, slower and uneven decline:</strong> Many waves appear to rise sharply to a peak but taper off more gradually, implying quick outbreak acceleration followed by a longer, uneven return toward lower levels.</li>
-        <li><strong>Increasing volatility in later periods:</strong> Compared with 2020, later sections show larger swings in width over shorter spans of time, suggesting greater variability and more abrupt changes in case levels even under a 7-day average smoothing.</li>
+      <li><strong>Unprecedented scale of the Omicron surge (early 2022):</strong> The outermost segment does not merely widen; it expands explosively outward, visually signaling a structural break. Omicron pushes daily new cases far beyond any prior maximum in 2020–2021.</li>
+      <li><strong>Seasonal recurrence with winter dominance:</strong> The inner rings (2020 and 2021) suggest a recurring pattern where major peaks cluster around winter (near the top of the spiral), implying a seasonal tendency in transmission intensity.</li>
+      <li><strong>Secondary rebounds outside winter:</strong> Beyond the dominant winter peaks, the spiral shows notable bulges in late summer/early fall, indicating that meaningful surges also occur outside the winter season rather than being confined to one annual window.</li>
+      <li><strong>Cyclical patterns vs. variant-driven unpredictability:</strong> While the spiral hints at seasonality and repetition, the abrupt magnitude jump in 2022 demonstrates that new variants can overwhelm historical patterns—past cycles do not reliably predict future surge scale.</li>
+      <li><strong>Expanding infection baseline over time:</strong> From the center outward, the overall band becomes thicker, suggesting that even between peaks, the “floor” of daily new cases rises across the two-year period. Later lows remain higher than earlier lows.</li>
+      <li><strong>Wave stacking / limited reset between surges:</strong> After major peaks, the curve does not fully contract back toward earlier low levels; instead, subsequent waves build on an already elevated baseline, creating a ratcheting effect over time.</li>
+      <li><strong>Rapid escalation, slower and uneven decline:</strong> Many waves appear to rise sharply to a peak but taper off more gradually, implying quick outbreak acceleration followed by a longer, uneven return toward lower levels.</li>
+      <li><strong>Increasing volatility in later periods:</strong> Compared with 2020, later sections show larger swings in width over shorter spans of time, suggesting greater variability and more abrupt changes in case levels even under a 7-day average smoothing.</li>
     </ul>
 
     <h2>Task 2 — Visualization Critique</h2>
+
     <p>
-        From a communication and narrative perspective, this visualization is highly effective for the context of a New York Times opinion piece: it is designed to make readers feel the escalation before they try to measure it. By replacing a conventional Cartesian time-series with a spiral in polar coordinates, it creates a strong metaphor of a vortex or runaway machine—an intuitive match to the article’s theme of “overwhelm.” The key claim (that Omicron represents an unprecedented surge) becomes immediately visible as the spiral bursts outward in early 2022. The design treatment supports this broad-audience readability: restrained sans-serif typography, minimal chart scaffolding, and clear year labels (2020/2021/2022) that guide the eye from the calmer center toward the alarming outer edge, creating a coherent narrative flow.
+      From a communication and narrative perspective, this visualization is highly effective for the context of a New York Times opinion piece: it is designed to make readers feel the escalation before they try to measure it. By replacing a conventional Cartesian time-series with a spiral in polar coordinates, it creates a strong metaphor of a vortex or runaway machine—an intuitive match to the article’s theme of “overwhelm.” The key claim (that Omicron represents an unprecedented surge) becomes immediately visible as the spiral bursts outward in early 2022. The design treatment supports this broad-audience readability: restrained sans-serif typography, minimal chart scaffolding, and clear year labels (2020/2021/2022) that guide the eye from the calmer center toward the alarming outer edge, creating a coherent narrative flow.
     </p>
     <p>
-        However, the same choices that maximize dramatic impact reduce analytical clarity and make precise comparison difficult. Polar geometry assigns later dates a much larger circumference, so the outer ring occupies more visual space and can receive disproportionate perceptual weight relative to earlier periods. The chart also weakens an absolute baseline: values are drawn as a band around a central 7-day average line rather than from a clear zero reference, which makes it hard to estimate magnitudes or compare peak heights across years. Important quantitative cues are therefore partially “hidden”—the single scale note (e.g., “150K cases”) is not enough in a curved, radiating layout without consistent reference rings or ticks, and the reading procedure (where to start, how to track month-to-month) still requires decoding. Overall, it succeeds as compelling data rhetoric for its intended audience, but it trades away interpretability; a redesign could retain the narrative arc while restoring a clearer baseline, stronger reference marks, and more explicit peak/time annotations.
+      However, the same choices that maximize dramatic impact reduce analytical clarity and make precise comparison difficult. Polar geometry assigns later dates a much larger circumference, so the outer ring occupies more visual space and can receive disproportionate perceptual weight relative to earlier periods. The chart also weakens an absolute baseline: values are drawn as a band around a central 7-day average line rather than from a clear zero reference, which makes it hard to estimate magnitudes or compare peak heights across years. Important quantitative cues are therefore partially “hidden”—the single scale note (e.g., “150K cases”) is not enough in a curved, radiating layout without consistent reference rings or ticks, and the reading procedure (where to start, how to track month-to-month) still requires decoding. Overall, it succeeds as compelling data rhetoric for its intended audience, but it trades away interpretability; a redesign could retain the narrative arc while restoring a clearer baseline, stronger reference marks, and more explicit peak/time annotations.
     </p>
 
     <h2>Task 3 — Sketching Alternatives</h2>
 
     <h3>Sketch 1: Radial Heatmap (Correcting Area Distortion)</h3>
-    <div class="chart-container">
-        <img src="img/2.png" alt="Sketch 1: Radial Heatmap">
-    </div>
+    <figure>
+      <img src="img/2.png" alt="Sketch 1: Radial Heatmap">
+      <figcaption>
+        <div class="cap-title">Figure 2 — Sketch 1: Radial Heatmap</div>
+        Replace “radius/width” encoding with cell intensity to preserve the cyclical year-over-year layout while reducing geometric dominance of outer rings.
+      </figcaption>
+    </figure>
+
     <div class="analysis-block">
-        <p><strong>Motivation:</strong> My primary goal here was to address a major flaw identified in my critique of the original NYT spiral chart: the inherent area distortion in polar coordinates, where outer rings occupy disproportionately more visual space simply due to geometry. I wanted to see if I could preserve the cyclical, year-over-year layout while fixing the math.</p>
-        <ul>
-            <li><strong>Time (Month):</strong> Angular position (Jan at the top, moving clockwise).</li>
-            <li><strong>Time (Year):</strong> Concentric rings (2020 inner, 2022 outer).</li>
-            <li><strong>Case Volume:</strong> Shading density/color intensity within each cell, rather than the width or radius of a line.</li>
-        </ul>
-        <p><strong>Design Rationale:</strong> By restricting the years to uniform concentric rings, I eliminated the misleading spatial expansion of the original spiral. The Omicron surge in early 2022 is still highly visible through the "Extreme Density Block," but it no longer physically dominates the page through distorted area. <em>Trade-off:</em> While more mathematically honest, interpreting exact values from shading (color/density) is perceptually harder for readers than reading line height.</p>
+      <p><strong>Motivation:</strong> My primary goal here was to address a major flaw identified in my critique of the original NYT spiral chart: the inherent area distortion in polar coordinates, where outer rings occupy disproportionately more visual space simply due to geometry. I wanted to see if I could preserve the cyclical, year-over-year layout while fixing the math.</p>
+      <ul>
+        <li><strong>Time (Month):</strong> Angular position (Jan at the top, moving clockwise).</li>
+        <li><strong>Time (Year):</strong> Concentric rings (2020 inner, 2022 outer).</li>
+        <li><strong>Case Volume:</strong> Shading density/color intensity within each cell, rather than the width or radius of a line.</li>
+      </ul>
+      <p><strong>Design Rationale:</strong> By restricting the years to uniform concentric rings, I eliminated the misleading spatial expansion of the original spiral. The Omicron surge in early 2022 is still highly visible through the "Extreme Density Block," but it no longer physically dominates the page through distorted area. <em>Trade-off:</em> While more mathematically honest, interpreting exact values from shading (color/density) is perceptually harder for readers than reading line height.</p>
     </div>
 
     <h3>Sketch 2: Covid Barcode (The Density Strip Metaphor)</h3>
-    <div class="chart-container">
-        <img src="img/3.png" alt="Sketch 2: Covid Barcode">
-    </div>
+    <figure>
+      <img src="img/3.png" alt="Sketch 2: Covid Barcode">
+      <figcaption>
+        <div class="cap-title">Figure 3 — Sketch 2: “Covid Barcode”</div>
+        A linear density-strip metaphor that prioritizes visceral narrative (overwhelm) over exact quantitative comparison.
+      </figcaption>
+    </figure>
+
     <div class="analysis-block">
-        <p><strong>Motivation:</strong> I wanted to flatten the timeline to improve readability (moving away from polar coordinates) while still retaining the visceral, emotional weight and the "overwhelming" narrative that the original NYT piece successfully captured.</p>
-        <ul>
-            <li><strong>Time:</strong> A continuous, linear progression along a horizontal strip (top to bottom or left to right).</li>
-            <li><strong>Case Volume:</strong> The physical density and clustering of illustrative "virus" icons within the strip.</li>
-        </ul>
-        <p><strong>Design Rationale:</strong> This design intentionally leans into a narrative, almost artistic approach. By literally packing the space with visual markers, the "Omicron Overload" section physically feels crowded and chaotic, effectively communicating the concept of an expanding infection baseline and an unprecedented surge. <em>Trade-off:</em> This visualization sacrifices analytical precision. It is impossible to extract exact case numbers or precisely compare the winter peak of 2020 to 2021, making it a rhetorical tool rather than an analytical one.</p>
+      <p><strong>Motivation:</strong> I wanted to flatten the timeline to improve readability (moving away from polar coordinates) while still retaining the visceral, emotional weight and the "overwhelming" narrative that the original NYT piece successfully captured.</p>
+      <ul>
+        <li><strong>Time:</strong> A continuous, linear progression along a horizontal strip (top to bottom or left to right).</li>
+        <li><strong>Case Volume:</strong> The physical density and clustering of illustrative "virus" icons within the strip.</li>
+      </ul>
+      <p><strong>Design Rationale:</strong> This design intentionally leans into a narrative, almost artistic approach. By literally packing the space with visual markers, the "Omicron Overload" section physically feels crowded and chaotic, effectively communicating the concept of an expanding infection baseline and an unprecedented surge. <em>Trade-off:</em> This visualization sacrifices analytical precision. It is impossible to extract exact case numbers or precisely compare the winter peak of 2020 to 2021, making it a rhetorical tool rather than an analytical one.</p>
     </div>
 
     <h3>Sketch 3: Seasonal Comparison (A Return to Cartesian Clarity)</h3>
-    <div class="chart-container">
-        <img src="img/4.png" alt="Sketch 3: Seasonal Comparison">
-    </div>
+    <figure>
+      <img src="img/4.png" alt="Sketch 3: Seasonal Comparison">
+      <figcaption>
+        <div class="cap-title">Figure 4 — Sketch 3: Seasonal Comparison</div>
+        Unroll the spiral into stacked seasonal plots with a shared Jan–Dec axis and a strict zero baseline for accurate comparisons.
+      </figcaption>
+    </figure>
+
     <div class="analysis-block">
-        <p><strong>Motivation:</strong> This sketch directly addresses the original chart's lack of an absolute baseline and the difficulty in accurately comparing seasonal wave heights across different years. I wanted to build a design that perfectly highlights the cyclical insights I noted in Task 1.</p>
-        <ul>
-            <li><strong>X-axis:</strong> Months of the year (Jan - Dec), shared across all years.</li>
-            <li><strong>Y-axis:</strong> Case volume with a strict, absolute zero baseline.</li>
-            <li><strong>Layout:</strong> Vertically stacked area/line charts, separated by year (2020, 2021, 2022).</li>
-        </ul>
-        <p><strong>Design Rationale:</strong> By unrolling the spiral into stacked Cartesian plots sharing the same Jan-Dec x-axis, seasonal recurrences (like the recurring winter spikes) become immediately obvious. More importantly, providing a flat baseline allows the viewer's eye to accurately judge magnitude. The geometric explosion of the 2022 Omicron wave doesn't need to rely on a "spiral" metaphor to be shocking; the sheer height of the curve relative to the strict baseline of previous years communicates the severity clearly and accurately.</p>
+      <p><strong>Motivation:</strong> This sketch directly addresses the original chart's lack of an absolute baseline and the difficulty in accurately comparing seasonal wave heights across different years. I wanted to build a design that perfectly highlights the cyclical insights I noted in Task 1.</p>
+      <ul>
+        <li><strong>X-axis:</strong> Months of the year (Jan - Dec), shared across all years.</li>
+        <li><strong>Y-axis:</strong> Case volume with a strict, absolute zero baseline.</li>
+        <li><strong>Layout:</strong> Vertically stacked area/line charts, separated by year (2020, 2021, 2022).</li>
+      </ul>
+      <p><strong>Design Rationale:</strong> By unrolling the spiral into stacked Cartesian plots sharing the same Jan-Dec x-axis, seasonal recurrences (like the recurring winter spikes) become immediately obvious. More importantly, providing a flat baseline allows the viewer's eye to accurately judge magnitude. The geometric explosion of the 2022 Omicron wave doesn't need to rely on a "spiral" metaphor to be shocking; the sheer height of the curve relative to the strict baseline of previous years communicates the severity clearly and accurately.</p>
     </div>
 
     <h2>Task 4 — Final Redesign and Justification</h2>
-    <div class="chart-container">
-        <img src="img/5.png" alt="Final Redesign - Tableau Overlapping Area Chart">
-    </div>
+
+    <figure>
+      <img src="img/5.png" alt="Final Redesign - Tableau Overlapping Area Chart">
+      <figcaption>
+        <div class="cap-title">Figure 5 — Final Redesign (Tableau): Overlapping Seasonal Area Chart</div>
+        Final design prioritizes analytic comparability: shared Jan–Dec axis, strict zero baseline, figure-ground contrast, and direct labeling.
+      </figcaption>
+    </figure>
+
     <div class="analysis-block">
-        <p><strong>Tool Used:</strong> Tableau.</p>
-        <p>
-            The central message of my final design is to accurately communicate the unprecedented magnitude of the early 2022 Omicron surge while revealing the recurring seasonal patterns of COVID-19 across three years. This redesign directly addresses the core weaknesses identified in my critique of the original NYT spiral visualization: the inherent area distortion caused by polar geometry and the absence of an absolute zero baseline, which made precise analytical comparisons nearly impossible. To resolve this, I unrolled the spiral into a Cartesian coordinate system, utilizing an overlapping area chart grounded on a shared zero-datum. By mapping all three years onto a single, fully labeled seasonal horizontal axis (January to December), the design eliminates the cognitive burden of estimating radial widths. Readers can now instantly and accurately compare the exact peak heights of different winter surges.
-        </p>
-        <p>
-            My visual encoding choices were highly deliberate, aiming to maximize both analytical clarity and narrative impact. Instead of applying equally weighted colors to all years, I utilized strategic contrast and figure-ground separation. The historical waves of 2020 and 2021 are rendered in muted, semi-transparent grays, pushing them into the background to establish a visual baseline. In stark contrast, the 2022 Omicron wave is encoded with a highly saturated color, immediately drawing the viewer’s pre-attentive focus to its overwhelming scale. To ensure clarity among the overlapping layers, I applied distinct border strokes to the area marks, allowing the eye to trace individual contours without visual noise. 
-        </p>
-        <p>
-            Furthermore, I prioritized maximizing the data-ink ratio. I eliminated the external color legend, which forces the reader's eyes to dart back and forth, and instead embedded the year labels directly within their corresponding areas. I also removed gridlines and redundant axis titles. To address a critical data integrity issue—the dataset ending in September 2022—I applied a global filter to truncate the timeline, preventing an artificial and misleading drop to zero at the end of the year. Finally, an explicit text annotation ("Shattering the Baseline") was placed at the 2022 peak to contextualize the data, shifting the chart from a purely exploratory tool to an explanatory narrative.
-        </p>
-        <p>
-            This redesign entails clear trade-offs. The original NYT spiral was heavily optimized to capture immediate attention and convey the visceral, unending shock of a new variant through a "vortex" metaphor—objectives it achieves powerfully. My overlapping area chart, while functionally rigorous and vastly superior for exact seasonal comparisons, is visually more conventional. It sacrifices the artistic intrigue of the spiral in exchange for interpretive clarity. Ultimately, articulating a primary communicative goal—in this case, demonstrating measurable magnitude over dramatic geometry—provided the necessary framework to justify every design choice I made.
-        </p>
+      <p><strong>Tool Used:</strong> Tableau.</p>
+      <p>
+        The central message of my final design is to accurately communicate the unprecedented magnitude of the early 2022 Omicron surge while revealing the recurring seasonal patterns of COVID-19 across three years. This redesign directly addresses the core weaknesses identified in my critique of the original NYT spiral visualization: the inherent area distortion caused by polar geometry and the absence of an absolute zero baseline, which made precise analytical comparisons nearly impossible. To resolve this, I unrolled the spiral into a Cartesian coordinate system, utilizing an overlapping area chart grounded on a shared zero-datum. By mapping all three years onto a single, fully labeled seasonal horizontal axis (January to December), the design eliminates the cognitive burden of estimating radial widths. Readers can now instantly and accurately compare the exact peak heights of different winter surges.
+      </p>
+      <p>
+        My visual encoding choices were highly deliberate, aiming to maximize both analytical clarity and narrative impact. Instead of applying equally weighted colors to all years, I utilized strategic contrast and figure-ground separation. The historical waves of 2020 and 2021 are rendered in muted, semi-transparent grays, pushing them into the background to establish a visual baseline. In stark contrast, the 2022 Omicron wave is encoded with a highly saturated color, immediately drawing the viewer’s pre-attentive focus to its overwhelming scale. To ensure clarity among the overlapping layers, I applied distinct border strokes to the area marks, allowing the eye to trace individual contours without visual noise.
+      </p>
+      <p>
+        Furthermore, I prioritized maximizing the data-ink ratio. I eliminated the external color legend, which forces the reader's eyes to dart back and forth, and instead embedded the year labels directly within their corresponding areas. I also removed gridlines and redundant axis titles. To address a critical data integrity issue—the dataset ending in September 2022—I applied a global filter to truncate the timeline, preventing an artificial and misleading drop to zero at the end of the year. Finally, an explicit text annotation ("Shattering the Baseline") was placed at the 2022 peak to contextualize the data, shifting the chart from a purely exploratory tool to an explanatory narrative.
+      </p>
+      <p>
+        This redesign entails clear trade-offs. The original NYT spiral was heavily optimized to capture immediate attention and convey the visceral, unending shock of a new variant through a "vortex" metaphor—objectives it achieves powerfully. My overlapping area chart, while functionally rigorous and vastly superior for exact seasonal comparisons, is visually more conventional. It sacrifices the artistic intrigue of the spiral in exchange for interpretive clarity. Ultimately, articulating a primary communicative goal—in this case, demonstrating measurable magnitude over dramatic geometry—provided the necessary framework to justify every design choice I made.
+      </p>
     </div>
 
-</div>
-
+  </div>
 </body>
 </html>
-
